@@ -47,7 +47,7 @@ jobs:
   docker-build-push:
     needs: build-and-test
     runs-on: laptop-ridhwan
-    if: github.event_name == 'push'
+    if: false  # Temporarily disabled - enable when Docker Hub credentials are set
     
     steps:
     - name: Checkout code
