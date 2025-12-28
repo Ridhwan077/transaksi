@@ -34,6 +34,7 @@ jobs:
     - name: Build with Maven (skip tests)
       run: |
         chmod +x mvnw
+        sed -i 's/\r$//' mvnw
         ./mvnw clean package -DskipTests
     
     - name: Upload JAR artifact

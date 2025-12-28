@@ -95,6 +95,7 @@ jobs:
       shell: bash
       run: |
         chmod +x mvnw
+        sed -i 's/\r$//' mvnw
         ./mvnw clean package -DskipTests
 
     - name: Perform CodeQL Analysis
