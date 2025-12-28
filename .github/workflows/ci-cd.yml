@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: laptop-ridhwan
     
     steps:
     - name: Checkout code
@@ -43,7 +43,7 @@ jobs:
 
   docker-build-push:
     needs: build-and-test
-    runs-on: ubuntu-latest
+    runs-on: laptop-ridhwan
     if: github.event_name == 'push'
     
     steps:
