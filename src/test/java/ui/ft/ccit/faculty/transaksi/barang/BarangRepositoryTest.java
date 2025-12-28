@@ -29,7 +29,7 @@ class BarangRepositoryTest {
                                 5000.0,
                                 20.0,
                                 0.0,
-                                (byte) 103,
+                                103,
                                 "S003");
 
                 barangRepository.save(barang);
@@ -43,9 +43,9 @@ class BarangRepositoryTest {
         @Test
         void findByNamaContainingIgnoreCase_shouldReturnMatchingRows() {
                 barangRepository.save(
-                                new Barang("T001", "Sabun Mandi", (short) 10, 5000.0, 20.0, 0.0, (byte) 103, "S003"));
+                                new Barang("T001", "Sabun Mandi", (short) 10, 5000.0, 20.0, 0.0, 103, "S003"));
                 barangRepository.save(
-                                new Barang("T002", "Shampoo Wangi", (short) 5, 15000.0, 25.0, 0.0, (byte) 103, "S003"));
+                                new Barang("T002", "Shampoo Wangi", (short) 5, 15000.0, 25.0, 0.0, 103, "S003"));
 
                 List<Barang> hasil = barangRepository.findByNamaContainingIgnoreCase("sham");
 

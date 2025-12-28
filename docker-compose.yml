@@ -1,12 +1,10 @@
 services:
   app:
-    image: ${DOCKERHUB_USERNAME}/transaksi-app:latest
+    build: .
     container_name: transaksi-app
     depends_on:
       mysql:
         condition: service_healthy
-      db-init:
-        condition: service_completed_successfully
     environment:
       SPRING_PROFILES_ACTIVE: docker
     ports:
@@ -24,8 +22,9 @@ services:
       MYSQL_PASSWORD: mypassword
     volumes:
       - mysql-data:/var/lib/mysql
+      - ./db/penjualan.sql:/docker-entrypoint-initdb.d/penjualan.sql
     ports:
-      - "3306:3306"
+      - "3307:3306"
     networks: [backend]
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-prootpassword"]
@@ -33,24 +32,6 @@ services:
       timeout: 3s
       retries: 10
       start_period: 30s
-
-  db-init:
-    image: mysql:8.0
-    container_name: mysql-init
-    depends_on:
-      mysql:
-        condition: service_healthy
-    environment:
-      MYSQL_PWD: rootpassword
-    command: >
-      sh -c "
-        until mysqladmin ping -hmysql -uroot --silent; do sleep 1; done;
-        mysql -hmysql -uroot penjualan < /init/penjualan.sql;
-      "
-    volumes:
-      - ./db/penjualan.sql:/init/penjualan.sql
-    restart: "no"
-    networks: [backend]
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest

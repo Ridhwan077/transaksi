@@ -9,7 +9,7 @@ public class JenisBarang {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // kalau tabel kamu auto increment
     @Column(name = "id_jenis_brg")
-    private Byte idJenisBarang;
+    private Integer idJenisBarang;
 
     @Column(name = "nama_jenis_brg", length = 255)
     private String namaJenis;
@@ -18,18 +18,18 @@ public class JenisBarang {
         // untuk JPA
     }
 
-    public JenisBarang(Byte idJenisBarang, String namaJenis) {
+    public JenisBarang(Integer idJenisBarang, String namaJenis) {
         this.idJenisBarang = idJenisBarang;
         this.namaJenis = namaJenis;
     }
 
     // === GETTERS & SETTERS ===
 
-    public Byte getIdJenisBarang() {
+    public Integer getIdJenisBarang() {
         return idJenisBarang;
     }
 
-    public void setIdJenisBarang(Byte idJenisBarang) {
+    public void setIdJenisBarang(Integer idJenisBarang) {
         this.idJenisBarang = idJenisBarang;
     }
 
